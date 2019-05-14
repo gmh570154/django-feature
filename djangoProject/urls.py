@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from . import view
+from webAPI import views as web_api_views
 
 urlpatterns = [
-    url(r'^index/$', view.hello)
+    url(r'^$', web_api_views.add_view_log),
+    url(r'^view_logs', web_api_views.get_all_view_logs),
 ]
