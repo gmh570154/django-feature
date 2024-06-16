@@ -1,10 +1,10 @@
+## 基本命令
 1.创建项目不能在包含中文的目录下：django-admin startproject mysite
 2.创建app： python manage.py startapp cltest
 3.数据库迁移：python manage.py migrate
-3.创建管理员账号：python manage.py createsuperuser
+4.创建管理员账号：python manage.py createsuperuser
 
-## 创建虚拟环境Creating Virtual Environments
-## 在终端创建的步骤如下
+## 创建虚拟环境Creating Virtual Environments,在终端创建的步骤如下
 python3 -m venv tutorial-env   创建虚拟环境
 source tutorial-env/bin/activate   进入虚拟环境
 deactivate   退出虚拟环境
@@ -24,6 +24,7 @@ pip install uvicorn
 uvicorn django01.asgi:application --port 8000 --host 192.168.1.225
 
 # nginx配置
+~~~
 upstream backend {
     server 192.168.1.225:8000;
     # There could be more than a backend here
@@ -47,6 +48,7 @@ server {
       proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
+~~~
 
 # 添加glb-request-id的方式
 
@@ -54,9 +56,10 @@ request_id用一个小算法自动生成。如果请求头有 X-Request-ID，就
 
 1、在请求一开始打印请求基础信息(如 request path、get params)
 2、打印日志时将 request id 带上，方便追踪请求
-1. 定义 Middleware 和 Logging Filter
-注：本示例文件路径为 dataStatistics.log_middleware.py
 
+## 1. 定义 Middleware 和 Logging Filter
+注：本示例文件路径为 dataStatistics.log_middleware.py
+~~~
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
@@ -113,10 +116,10 @@ class RequestIDMiddleware(MiddlewareMixin):
         except AttributeError:
             pass
         return response
-
-2. 在 settings.py 中注册 自定义的 Middleware 并 使用 filter
+~~~
+## 2. 在 settings.py 中注册 自定义的 Middleware 并 使用 filter
 MIDDLEWARE配置示例：
-
+~~~
 MIDDLEWARE = [
     'dataStatistics.log_middleware.RequestIDMiddleware'
 ]
@@ -173,16 +176,21 @@ LOGGING = {
         }
     }
 }
+~~~
 
-3. 在代码中使用
+## 3. 在代码中使用
+~~~
 首先拿到配置的 logger 对象：
 logger 其实都是 settings.py 中 loggers 所定义的
 logger = logging.getLogger('tracer')
 然后使用时直接调用即可，如：
 logger.debug("my debug demo")
 logger.info("my info demo")
+~~~
 效果如下：
+~~~
 INFO [2019-11-01 16:28:12,744] [pfja6kn4] : +++++ request_begin: [/warehouse/demo/] [GET] [('parm1', 'value1'), ('parm2', 'value2')]
 DEBUG [2019-11-01 16:28:12,746] [pfja6kn4] : my debug demo
 INFO [2019-11-01 16:28:12,746] [pfja6kn4] : my info demo
 INFO [2019-11-01 16:28:12,750] [pfja6kn4] : ----- request_end: [/warehouse/demo/]
+~~~

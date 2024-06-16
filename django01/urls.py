@@ -21,3 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('web/', include('app01.urls')),
 ]
+
+handler404 = 'app01.views.page_not_found'  #handler404为固定写法，需要把debug关了

@@ -24,10 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-js(+51#2_=7o+abk*oim887gk=_trd&yo$9z48wu@--0(+*fel'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
-
+# ALLOWED_HOSTS = []
+DEBUG = False    #关闭debug模式 这时为生产模式，在将项目部署到服务器时也需要关闭，debug模式会暴露站点的多种信息
+ALLOWED_HOSTS = ['*']  # * 为所有都可访问，部署服务器时需修改
 
 # Application definition
 
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app01.apps.App01Config'
 ]
 
 MIDDLEWARE = [
@@ -75,13 +77,23 @@ WSGI_APPLICATION = 'django01.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',  # 默认
+        'NAME': 'django',  # 连接的数据库
+        'HOST': '127.0.0.1',  # mysql的ip地址
+        'PORT': 3307,  # mysql的端口
+        'USER': 'root',  # mysql的用户名
+        'PASSWORD': 'pass4Zentao'  # mysql的密码
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
