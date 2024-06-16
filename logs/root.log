@@ -1,0 +1,59 @@
+2024-06-11 07:45:42 mylogger  /Users/ganmh/django/py3-django/django01/app01/views.py:10 views:runoob INFO- info log
+2024-06-11 07:47:52 mylogger  /Users/ganmh/django/py3-django/django01/app01/views.py:10 views:runoob INFO- info log
+2024-06-11 07:47:52 root  /Users/ganmh/django/py3-django/django01/app01/views.py:11 views:runoob INFO- defualt log
+2024-06-11 08:17:28 mylogger  /Users/ganmh/django/py3-django/django01/app01/views.py:10 views:runoob INFO- info log
+2024-06-11 08:17:28 root  /Users/ganmh/django/py3-django/django01/app01/views.py:11 views:runoob INFO- defualt log
+2024-06-11 08:18:07 mylogger  /Users/ganmh/django/py3-django/django01/app01/views.py:10 views:runoob INFO- info log
+2024-06-11 08:18:07 root  /Users/ganmh/django/py3-django/django01/app01/views.py:11 views:runoob INFO- defualt log
+2024-06-11 08:47:18 tracer  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:45 log_middleware:process_request INFO- +++++ request_begin: [/web/runoob/] [GET] []
+2024-06-11 08:47:18 mylogger  /Users/ganmh/django/py3-django/django01/app01/views.py:10 views:runoob INFO- info log
+2024-06-11 08:47:18 root  /Users/ganmh/django/py3-django/django01/app01/views.py:11 views:runoob INFO- defualt log
+2024-06-11 08:47:18 tracer  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:48 log_middleware:process_response INFO- ----- request_end: [/web/runoob/]
+2024-06-11 08:48:34 tracer  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:45 log_middleware:process_request INFO- +++++ request_begin: [/web/runoob/] [GET] []
+2024-06-11 08:48:34 mylogger  /Users/ganmh/django/py3-django/django01/app01/views.py:10 views:runoob INFO- info log
+2024-06-11 08:48:34 root  /Users/ganmh/django/py3-django/django01/app01/views.py:11 views:runoob INFO- defualt log
+2024-06-11 08:48:34 tracer  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:48 log_middleware:process_response INFO- ----- request_end: [/web/runoob/]
+2024-06-11 08:50:06 tracer  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:45 log_middleware:process_request INFO- +++++ request_begin: [/web/runoob/] [GET] []
+2024-06-11 08:50:06 mylogger  /Users/ganmh/django/py3-django/django01/app01/views.py:10 views:runoob INFO- info log
+2024-06-11 08:50:06 root  /Users/ganmh/django/py3-django/django01/app01/views.py:11 views:runoob INFO- defualt log
+2024-06-11 08:50:06 tracer  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:48 log_middleware:process_response INFO- ----- request_end: [/web/runoob/]
+2024-06-11 09:01:47 tracer  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:45 log_middleware:process_request INFO- +++++ request_begin: [/web/runoob/] [GET] []
+2024-06-11 09:01:47 mylogger  /Users/ganmh/django/py3-django/django01/app01/views.py:10 views:runoob INFO- info log
+2024-06-11 09:01:47 root  /Users/ganmh/django/py3-django/django01/app01/views.py:11 views:runoob INFO- defualt log
+2024-06-11 09:01:47 tracer  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:48 log_middleware:process_response INFO- ----- request_end: [/web/runoob/]
+2024-06-11 09:02:58 tracer  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:45 log_middleware:process_request INFO- +++++ request_begin: [/web/runoob/] [GET] []
+2024-06-11 09:02:58 mylogger  /Users/ganmh/django/py3-django/django01/app01/views.py:10 views:runoob INFO- info log
+2024-06-11 09:02:58 root  /Users/ganmh/django/py3-django/django01/app01/views.py:11 views:runoob INFO- defualt log
+2024-06-11 09:02:58 tracer  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:48 log_middleware:process_response INFO- ----- request_end: [/web/runoob/]
+2024-06-11 09:04:21 mylogger  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:45 log_middleware:process_request INFO- +++++ request_begin: [/web/runoob/] [GET] []
+2024-06-11 09:04:21 mylogger  /Users/ganmh/django/py3-django/django01/app01/views.py:10 views:runoob INFO- info log
+2024-06-11 09:04:21 root  /Users/ganmh/django/py3-django/django01/app01/views.py:11 views:runoob INFO- defualt log
+2024-06-11 09:04:21 mylogger  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:48 log_middleware:process_response INFO- ----- request_end: [/web/runoob/]
+2024-06-11 09:05:18 mylogger  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:45 log_middleware:process_request INFO- +++++ request_begin: [/web/runoob/] [GET] []
+2024-06-11 09:05:18 mylogger  /Users/ganmh/django/py3-django/django01/app01/views.py:10 views:runoob INFO- info log
+2024-06-11 09:05:18 root  /Users/ganmh/django/py3-django/django01/app01/views.py:11 views:runoob INFO- defualt log
+2024-06-11 09:05:18 mylogger  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:48 log_middleware:process_response INFO- ----- request_end: [/web/runoob/]
+2024-06-11 09:07:07 mylogger  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:45 log_middleware:process_request INFO- +++++ request_begin: [/web/runoob/] [GET] []
+2024-06-11 09:07:07 mylogger  /Users/ganmh/django/py3-django/django01/app01/views.py:10 views:runoob INFO- info log
+2024-06-11 09:07:07 root  /Users/ganmh/django/py3-django/django01/app01/views.py:11 views:runoob INFO- defualt log
+2024-06-11 09:07:07 mylogger  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:48 log_middleware:process_response INFO- ----- request_end: [/web/runoob/]
+2024-06-11 09:11:21 mylogger  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:46 log_middleware:process_request INFO- +++++ request_begin: [/web/runoob/] [GET] []
+2024-06-11 09:11:21 mylogger  /Users/ganmh/django/py3-django/django01/app01/views.py:10 views:runoob INFO- info log
+2024-06-11 09:11:21 root  /Users/ganmh/django/py3-django/django01/app01/views.py:11 views:runoob INFO- defualt log
+2024-06-11 09:11:21 mylogger  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:49 log_middleware:process_response INFO- ----- request_end: [/web/runoob/]
+2024-06-11 09:12:23 mylogger  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:46 log_middleware:process_request INFO- +++++ request_begin: [/web/runoob/] [GET] []
+2024-06-11 09:12:23 mylogger  /Users/ganmh/django/py3-django/django01/app01/views.py:10 views:runoob INFO- info log
+2024-06-11 09:12:23 root  /Users/ganmh/django/py3-django/django01/app01/views.py:11 views:runoob INFO- defualt log
+2024-06-11 09:12:23 mylogger  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:49 log_middleware:process_response INFO- ----- request_end: [/web/runoob/]
+2024-06-11 09:12:58 mylogger  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:47 log_middleware:process_request INFO- +++++ request_begin: [/web/runoob/] [GET] []
+2024-06-11 09:12:58 mylogger  /Users/ganmh/django/py3-django/django01/app01/views.py:10 views:runoob INFO- info log
+2024-06-11 09:12:58 root  /Users/ganmh/django/py3-django/django01/app01/views.py:11 views:runoob INFO- defualt log
+2024-06-11 09:12:58 mylogger  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:50 log_middleware:process_response INFO- ----- request_end: [/web/runoob/]
+2024-06-11 09:14:34 mylogger  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:47 log_middleware:process_request INFO- +++++ request_begin: [/web/runoob/] [GET] []
+2024-06-11 09:14:34 mylogger  /Users/ganmh/django/py3-django/django01/app01/views.py:10 views:runoob INFO- info log
+2024-06-11 09:14:34 root  /Users/ganmh/django/py3-django/django01/app01/views.py:11 views:runoob INFO- defualt log
+2024-06-11 09:14:34 mylogger  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:50 log_middleware:process_response INFO- ----- request_end: [/web/runoob/]
+2024-06-11 09:16:51 mylogger  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:49 log_middleware:process_request INFO- +++++ request_begin: [/web/runoob/] [GET] []
+2024-06-11 09:16:51 mylogger  /Users/ganmh/django/py3-django/django01/app01/views.py:10 views:runoob INFO- info log
+2024-06-11 09:16:51 root  /Users/ganmh/django/py3-django/django01/app01/views.py:11 views:runoob INFO- defualt log
+2024-06-11 09:16:51 mylogger  /Users/ganmh/django/py3-django/django01/django01/log_middleware.py:52 log_middleware:process_response INFO- ----- request_end: [/web/runoob/]

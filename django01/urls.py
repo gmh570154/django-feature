@@ -1,7 +1,8 @@
-"""djangoProject URL Configuration
+"""
+URL configuration for django01 project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.2/topics/http/urls/
+    https://docs.djangoproject.com/en/4.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -13,11 +14,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls import url
-from . import view
-from webAPI import views as web_api_views
+from django.contrib import admin
+from django.urls import include, path
 
 urlpatterns = [
-    url(r'^$', web_api_views.add_view_log),
-    url(r'^view_logs', web_api_views.get_all_view_logs),
+    path('admin/', admin.site.urls),
+    path('web/', include('app01.urls')),
 ]

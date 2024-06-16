@@ -1,0 +1,16 @@
+2024-06-11 07:45:42 django.server  /Users/ganmh/django/py3-django/django3-env/lib/python3.9/site-packages/django/core/servers/basehttp.py:212 basehttp:log_message INFO- "GET /web/runoob/ HTTP/1.1" 200 21
+2024-06-11 07:47:52 django.server  /Users/ganmh/django/py3-django/django3-env/lib/python3.9/site-packages/django/core/servers/basehttp.py:212 basehttp:log_message INFO- "GET /web/runoob/ HTTP/1.1" 200 21
+2024-06-11 08:17:28 django.server  /Users/ganmh/django/py3-django/django3-env/lib/python3.9/site-packages/django/core/servers/basehttp.py:212 basehttp:log_message INFO- "GET /web/runoob/ HTTP/1.1" 200 21
+2024-06-11 08:18:07 django.server  /Users/ganmh/django/py3-django/django3-env/lib/python3.9/site-packages/django/core/servers/basehttp.py:212 basehttp:log_message INFO- "GET /web/runoob/ HTTP/1.1" 200 21
+2024-06-11 08:47:18 django.server  /Users/ganmh/django/py3-django/django3-env/lib/python3.9/site-packages/django/core/servers/basehttp.py:212 basehttp:log_message INFO- "GET /web/runoob/ HTTP/1.1" 200 21
+INFO [2024-06-11 08:48:34] [none] : "GET /web/runoob/ HTTP/1.1" 200 21
+INFO [2024-06-11 08:50:06] [none] : "GET /web/runoob/ HTTP/1.1" 200 21
+2024-06-11 09:01:47 django.server  /Users/ganmh/django/py3-django/django3-env/lib/python3.9/site-packages/django/core/servers/basehttp.py:212 basehttp:log_message INFO- "GET /web/runoob/ HTTP/1.1" 200 21
+2024-06-11 09:02:58 django.server  /Users/ganmh/django/py3-django/django3-env/lib/python3.9/site-packages/django/core/servers/basehttp.py:212 basehttp:log_message INFO- "GET /web/runoob/ HTTP/1.1" 200 21
+2024-06-11 09:04:21 django.server  /Users/ganmh/django/py3-django/django3-env/lib/python3.9/site-packages/django/core/servers/basehttp.py:212 basehttp:log_message INFO- "GET /web/runoob/ HTTP/1.1" 200 21
+2024-06-11 09:05:56 django.server  /Users/ganmh/django/py3-django/django3-env/lib/python3.9/site-packages/django/core/servers/basehttp.py:212 basehttp:log_message INFO- "GET /web/runoob/ HTTP/1.1" 200 21
+2024-06-11 09:11:24 django.server  /Users/ganmh/django/py3-django/django3-env/lib/python3.9/site-packages/django/core/servers/basehttp.py:212 basehttp:log_message INFO- "GET /web/runoob/ HTTP/1.1" 200 21
+2024-06-11 09:12:23 django.server  /Users/ganmh/django/py3-django/django3-env/lib/python3.9/site-packages/django/core/servers/basehttp.py:212 basehttp:log_message ERROR- "GET /web/runoob/ HTTP/1.1" 500 69207
+2024-06-11 09:12:58 django.server  /Users/ganmh/django/py3-django/django3-env/lib/python3.9/site-packages/django/core/servers/basehttp.py:212 basehttp:log_message INFO- "GET /web/runoob/ HTTP/1.1" 200 21
+2024-06-11 09:14:34 django.server  /Users/ganmh/django/py3-django/django3-env/lib/python3.9/site-packages/django/core/servers/basehttp.py:212 basehttp:log_message INFO- "GET /web/runoob/ HTTP/1.1" 200 21
+2024-06-11 09:16:51 django.server  /Users/ganmh/django/py3-django/django3-env/lib/python3.9/site-packages/django/core/servers/basehttp.py:212 basehttp:log_message INFO- "GET /web/runoob/ HTTP/1.1" 200 21

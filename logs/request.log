@@ -1,0 +1,9 @@
+2024-06-11 09:12:23 django.request  /Users/ganmh/django/py3-django/django3-env/lib/python3.9/site-packages/django/utils/log.py:241 log:log_response ERROR- Internal Server Error: /web/runoob/
+Traceback (most recent call last):
+  File "/Users/ganmh/django/py3-django/django3-env/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/ganmh/django/py3-django/django3-env/lib/python3.9/site-packages/django/utils/deprecation.py", line 136, in __call__
+    response = self.process_response(request, response)
+  File "/Users/ganmh/django/py3-django/django01/django01/log_middleware.py", line 52, in process_response
+    response['X-Request-ID'] = local.request_id
+AttributeError: '_thread._local' object has no attribute 'request_id'
