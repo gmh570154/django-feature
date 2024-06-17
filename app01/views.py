@@ -2,13 +2,17 @@ from django.shortcuts import render
 
 import logging
 logger = logging.getLogger("mylogger")
+from django.conf import settings
+
 # Create your views here.
  
 def runoob(request):
     context          = {}
     context['hello'] = 'Hello World!'
     logger.info("info log")
-    logging.info("defualt log")
+    logger.info("defualt log")
+    logger.info(settings.MY_HOST)
+    logger.info(settings.MY_PORT)
     return render(request, 'runoob.html', context)
 
 def page_not_found(request,exception):

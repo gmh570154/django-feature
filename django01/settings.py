@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+try:
+    from .utils.config import CONF
+except ImportError:
+    pass
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,11 +29,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-js(+51#2_=7o+abk*oim887gk=_trd&yo$9z48wu@--0(+*fel'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+DEBUG = True
 
-# ALLOWED_HOSTS = []
-DEBUG = False    #关闭debug模式 这时为生产模式，在将项目部署到服务器时也需要关闭，debug模式会暴露站点的多种信息
-ALLOWED_HOSTS = ['*']  # * 为所有都可访问，部署服务器时需修改
+ALLOWED_HOSTS = []
+
+# DEBUG = False    #关闭debug模式 这时为生产模式，在将项目部署到服务器时也需要关闭，debug模式会暴露站点的多种信息
+# ALLOWED_HOSTS = ['*']  # * 为所有都可访问，部署服务器时需修改
 
 # Application definition
 
@@ -265,3 +271,6 @@ LOGGING = {
         "handlers": ["root"],
     }
 }
+
+MY_HOST = CONF.DEFAULT.host
+MY_PORT = CONF.DEFAULT.port

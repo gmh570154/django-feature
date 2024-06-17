@@ -194,3 +194,12 @@ DEBUG [2019-11-01 16:28:12,746] [pfja6kn4] : my debug demo
 INFO [2019-11-01 16:28:12,746] [pfja6kn4] : my info demo
 INFO [2019-11-01 16:28:12,750] [pfja6kn4] : ----- request_end: [/warehouse/demo/]
 ~~~
+
+## 增加配置文件
+~~~
+安装依赖
+pip install oslo_config
+~~~
+* 增加local_setting.conf
+* config.py解析conf文件
+* settings.py引入全局配置
