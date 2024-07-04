@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.views.decorators.cache import cache_page
+from django.core.cache import cache
 
 import logging
 logger = logging.getLogger("mylogger")
@@ -6,6 +8,7 @@ from django.conf import settings
 
 # Create your views here.
  
+@cache_page(60 * 15)
 def runoob(request):
     context          = {}
     context['hello'] = 'Hello World!'
@@ -13,6 +16,9 @@ def runoob(request):
     logger.info("defualt log")
     logger.info(settings.MY_HOST)
     logger.info(settings.MY_PORT)
+    
+    res = cache.set("test", 1235)
+    print(res)
     return render(request, 'runoob.html', context)
 
 def page_not_found(request,exception):
