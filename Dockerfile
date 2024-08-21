@@ -1,5 +1,5 @@
 # 基础镜像
-FROM python:3.9
+FROM python:3.9-alpine
  
 # 将 pip 源设置为国内的源
 COPY pip.conf /root/.pip/pip.conf

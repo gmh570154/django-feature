@@ -31,7 +31,7 @@ mysql_Opts = [
                default='localhost',
                help='mysql IP/hostname to connect.'),
     cfg.IntOpt('port',
-               default=3307,
+               default=3306,
                help='Port number to connect.')
 ]
 
