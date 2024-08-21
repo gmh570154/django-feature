@@ -87,8 +87,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # 默认
         'NAME': 'django',  # 连接的数据库
-        'HOST': '127.0.0.1',  # mysql的ip地址
-        'PORT': 3307,  # mysql的端口
+        'HOST': CONF.mysql.host,  # mysql的ip地址
+        'PORT': CONF.mysql.port,  # mysql的端口
         'USER': 'root',  # mysql的用户名
         'PASSWORD': 'pass4Zentao'  # mysql的密码
     }
@@ -271,7 +271,7 @@ MY_PORT = CONF.DEFAULT.port
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "LOCATION": "redis://" + CONF.redis.host + ":" + str(CONF.redis.port) + "/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }

@@ -1,0 +1,19 @@
+version: '3'
+ 
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./django01/local/local_settings.conf:/code/django01/local/local_settings.conf
+    ports:
+      - "8000:8000"
+    # network_mode: host  # mac不支持host模式
+    environment:
+      - DJANGO_SETTINGS_MODULE=django01.settings
+    networks:
+      - zentao_zentao-net
+
+networks:
+  zentao_zentao-net:
+    external: true

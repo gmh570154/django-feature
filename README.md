@@ -203,3 +203,12 @@ pip install oslo_config
 * 增加local_setting.conf
 * config.py解析conf文件
 * settings.py引入全局配置
+
+## 增加dockerfile文件和pip.conf文件使用docker进行部署
+构建镜像并启动：
+docker-compse up -d 
+
+需要修改配置文件，对接mysql和redis服务：
+./django01/local/local_settings.conf
+
+tip：重新编译需要把镜像删除掉
