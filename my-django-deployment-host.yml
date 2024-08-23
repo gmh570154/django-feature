@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-django-deployment1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-django1
+  template:
+    metadata:
+      labels:
+        app: my-django1
+    spec:
+      # hostNetwork: true   # 将pod暴露在宿主机环境中，这时Pod的PodIP就是其所在Node的IP，
+      containers:
+      - name: my-django1
+        image: django01-web:latest
+        imagePullPolicy: Never  # 需要设置成Never, 否则， Kubernetes将在注册表中根据你提供的名字来搜素同名镜像。
+        ports:
+        - containerPort: 8000  # 容器对外端口
+          hostPort: 8000

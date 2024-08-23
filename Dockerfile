@@ -1,5 +1,5 @@
 # 基础镜像
-FROM python:3.9-alpine
+FROM python:3.9-alpine as base
  
 # 将 pip 源设置为国内的源
 COPY pip.conf /root/.pip/pip.conf
@@ -15,3 +15,15 @@ COPY . /code/
  
 # 安装项目依赖
 RUN pip install -r requirements.txt
+
+# # 在新镜像中创建数据卷，防止代码数据丢失
+# VOLUME /code
+
+# 运行 Django 的 migrate 命令
+RUN python manage.py migrate
+
+# 暴露端口
+EXPOSE 8000
+
+# 设置 CMD 指令，以便在容器中运行 Django 服务器
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

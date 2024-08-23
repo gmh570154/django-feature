@@ -212,3 +212,10 @@ docker-compse up -d
 ./django01/local/local_settings.conf
 
 tip：重新编译需要把镜像删除掉
+
+## 使用docker-compose启动方式
+docker-compose up -d
+
+## 使用k8s部署pod和service方式
+kubectl apply -f my-django-deployment.yml
+kubectl apply -f my-django-service.yml
