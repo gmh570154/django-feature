@@ -219,3 +219,10 @@ docker-compose up -d
 ## 使用k8s部署pod和service方式
 kubectl apply -f my-django-deployment.yml
 kubectl apply -f my-django-service.yml
+
+
+## 使用pyarmor 对工程代码进行加密，输出目录dist
+sh encript_code.sh
+测试：
+python dist/manage.py runserver 0.0.0.0:8090
+curl http://localhost:8090/web/runoob/
