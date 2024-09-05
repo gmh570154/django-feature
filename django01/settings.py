@@ -56,7 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django01.log_middleware.RequestIDMiddleware'
+    'django01.utils.log_middleware.RequestIDMiddleware',
+    'django01.utils.exception_middleware.ExceptionMiddleware'
 ]
 
 ROOT_URLCONF = 'django01.urls'
@@ -137,8 +138,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 日志配置
 LOGGING = {
-    'version': 1, # 固定值，现在只有这一个版本
-    'disable_existing_loggers': False, # 设置已存在的logger不失效
+    'version': 1,  # 固定值，现在只有这一个版本
+    'disable_existing_loggers': False,  # 设置已存在的logger不失效
     'formatters': {
         'verbose': {
             'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
@@ -166,7 +167,7 @@ LOGGING = {
         },
         'request_id': {
             # 自定义的filter
-            '()': 'django01.log_middleware.RequestIDFilter'
+            '()': 'django01.utils.log_middleware.RequestIDFilter'
         }
     },
     'handlers': {
@@ -203,7 +204,7 @@ LOGGING = {
             'filename': os.path.join(BASE_DIR, 'logs/root.log'),
             'formatter': 'default'
         },
- 
+
         "db_backends": {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
@@ -277,3 +278,5 @@ CACHES = {
         }
     }
 }
+
+LOGGER_NAME = "mylogger"

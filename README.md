@@ -1,30 +1,35 @@
 ## 基本命令
+
 1.创建项目不能在包含中文的目录下：django-admin startproject mysite
 2.创建app： python manage.py startapp cltest
 3.数据库迁移：python manage.py migrate
 4.创建管理员账号：python manage.py createsuperuser
 
-## 创建虚拟环境Creating Virtual Environments,在终端创建的步骤如下
-python3 -m venv tutorial-env   创建虚拟环境
-source tutorial-env/bin/activate   进入虚拟环境
-deactivate   退出虚拟环境
+## 创建虚拟环境 Creating Virtual Environments,在终端创建的步骤如下
+
+python3 -m venv tutorial-env 创建虚拟环境
+source tutorial-env/bin/activate 进入虚拟环境
+deactivate 退出虚拟环境
 
 python manage.py migrate
 python manage.py runserver
 
-# 使用daphne 部署django
+# 使用 daphne 部署 django
+
 pip install daphne
 
 daphne django01.asgi:application
 
 daphne django01.asgi:application -p 8000 -b 192.168.1.225
 
-# 使用uvicorn部署djanog
+# 使用 uvicorn 部署 djanog
+
 pip install uvicorn
 uvicorn django01.asgi:application --port 8000 --host 192.168.1.225
 
-# nginx配置
-~~~
+# nginx 配置
+
+```
 upstream backend {
     server 192.168.1.225:8000;
     # There could be more than a backend here
@@ -48,18 +53,20 @@ server {
       proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
-~~~
+```
 
-# 添加glb-request-id的方式
+# 添加 glb-request-id 的方式
 
-request_id用一个小算法自动生成。如果请求头有 X-Request-ID，就用请求头的，这样一个请求涉及多个服务调用的时候可以把request_id带过去，标识为同一个请求的request_id.
+request_id 用一个小算法自动生成。如果请求头有 X-Request-ID，就用请求头的，这样一个请求涉及多个服务调用的时候可以把 request_id 带过去，标识为同一个请求的 request_id.
 
 1、在请求一开始打印请求基础信息(如 request path、get params)
 2、打印日志时将 request id 带上，方便追踪请求
 
 ## 1. 定义 Middleware 和 Logging Filter
+
 注：本示例文件路径为 dataStatistics.log_middleware.py
-~~~
+
+```
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
@@ -116,10 +123,13 @@ class RequestIDMiddleware(MiddlewareMixin):
         except AttributeError:
             pass
         return response
-~~~
+```
+
 ## 2. 在 settings.py 中注册 自定义的 Middleware 并 使用 filter
-MIDDLEWARE配置示例：
-~~~
+
+MIDDLEWARE 配置示例：
+
+```
 MIDDLEWARE = [
     'dataStatistics.log_middleware.RequestIDMiddleware'
 ]
@@ -176,53 +186,65 @@ LOGGING = {
         }
     }
 }
-~~~
+```
 
 ## 3. 在代码中使用
-~~~
+
+```
 首先拿到配置的 logger 对象：
 logger 其实都是 settings.py 中 loggers 所定义的
 logger = logging.getLogger('tracer')
 然后使用时直接调用即可，如：
 logger.debug("my debug demo")
 logger.info("my info demo")
-~~~
+```
+
 效果如下：
-~~~
+
+```
 INFO [2019-11-01 16:28:12,744] [pfja6kn4] : +++++ request_begin: [/warehouse/demo/] [GET] [('parm1', 'value1'), ('parm2', 'value2')]
 DEBUG [2019-11-01 16:28:12,746] [pfja6kn4] : my debug demo
 INFO [2019-11-01 16:28:12,746] [pfja6kn4] : my info demo
 INFO [2019-11-01 16:28:12,750] [pfja6kn4] : ----- request_end: [/warehouse/demo/]
-~~~
+```
 
 ## 增加配置文件
-~~~
+
+```
 安装依赖
 pip install oslo_config
-~~~
-* 增加local_setting.conf
-* config.py解析conf文件
-* settings.py引入全局配置
+```
 
-## 增加dockerfile文件和pip.conf文件使用docker进行部署
+- 增加 local_setting.conf
+- config.py 解析 conf 文件
+- settings.py 引入全局配置
+
+## 增加 dockerfile 文件和 pip.conf 文件使用 docker 进行部署
+
 构建镜像并启动：
-docker-compse up -d 
+docker-compse up -d
 
-需要修改配置文件，对接mysql和redis服务：
+需要修改配置文件，对接 mysql 和 redis 服务：
 ./django01/local/local_settings.conf
 
 tip：重新编译需要把镜像删除掉
 
-## 使用docker-compose启动方式
+## 使用 docker-compose 启动方式
+
 docker-compose up -d
 
-## 使用k8s部署pod和service方式
+## 使用 k8s 部署 pod 和 service 方式
+
 kubectl apply -f my-django-deployment.yml
 kubectl apply -f my-django-service.yml
 
+## 使用 pyarmor 对工程代码进行加密，输出目录 dist
 
-## 使用pyarmor 对工程代码进行加密，输出目录dist
 sh encript_code.sh
 测试：
 python dist/manage.py runserver 0.0.0.0:8090
 curl http://localhost:8090/web/runoob/
+
+## 新增依赖包
+
+pip install enums
