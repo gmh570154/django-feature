@@ -7,12 +7,11 @@ from django01.utils.response_util import json_util
 # Function based view，使用装饰器功能处理返回json数据
 @json_util
 def myView(request):
-    data = "test"
-    # data = {
-    #     "name": "Vaibhav",
-    #     "age": 20,
-    #     "hobbies": ["Coding", "Art", "Gaming", "Cricket", "Piano"],
-    # }
+    data = {
+        "name": "Vaibhav",
+        "age": 20,
+        "hobbies": ["Coding", "Art", "Gaming", "Cricket", "Piano"],
+    }
     return data
 
 

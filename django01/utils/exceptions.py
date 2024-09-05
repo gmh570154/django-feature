@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-# @Author: Hui
-# @Desc: { 项目异常模块 }
-# @Date: 2021/09/24 8:14
+# @Author: gmh
+# @Desc: { 中间件模块 }
+# @Date: 2024/09/05 8:18
 
 class CommonException(Exception):
     """公共异常类"""

@@ -75,6 +75,3 @@ CONF.register_opts(redis_Opts, redis_group)
 
 # CONF(default_config_files=['local_settings.conf'])
 CONF(['--config-file', 'django01/local/local_settings.conf'])
-
-print("rabbit.host: " + CONF.DEFAULT.host)
-print("rabbit.port: " + str(CONF.DEFAULT.port))

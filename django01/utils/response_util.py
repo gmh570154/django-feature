@@ -1,9 +1,9 @@
-import json
 import logging
 
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.conf import settings
 
+from django01.utils.result import R
 from django01.utils.enums import StatusCodeEnum
 from django01.utils.exceptions import BusinessException
 
@@ -16,7 +16,8 @@ def json_util(func):
         data = func(*args, **kw)
         logger.info("response data: {}".format(data))
         if type(data) is dict:
-            return HttpResponse(json.dumps(data), content_type="application/json")
+            r = R.ok().data(obj=data)
+            return JsonResponse(r)
         else:
             raise BusinessException(StatusCodeEnum.SERVER_ERR)
 

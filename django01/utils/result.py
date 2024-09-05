@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-# @Author: Hui
-# @Desc: { 项目信息返回结果模块 }
-# @Date: 2021/09/23 22:10
+# @Author: gmh
+# @Desc: { 中间件模块 }
+# @Date: 2024/09/05 8:18
 from .enums import StatusCodeEnum
 
 
@@ -66,6 +66,8 @@ class R(object):
 
         if key:
             self._data[key] = obj
+        else:
+            self._data = obj
 
         context = {
             'code': self.code,
