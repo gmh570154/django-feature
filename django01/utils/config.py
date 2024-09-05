@@ -1,7 +1,9 @@
 # coding:utf-8
 from oslo_config import cfg
-from oslo_config import types
-
+# -*- coding: utf-8 -*-
+# @Author: gmh
+# @Desc: { 配置文件模块，读取配置文件内容 }
+# @Date: 2024/09/05 8:18
 
 # 配置组
 rabbit_group = cfg.OptGroup(

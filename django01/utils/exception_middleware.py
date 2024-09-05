@@ -23,6 +23,7 @@ class ExceptionMiddleware(MiddlewareMixin):
     """统一异常处理中间件"""
 
     def process_response(self, request, response):
+        """返回结果统一处理，转成json返回中间件"""
         logger.info("response data: {}".format(response))
         if type(response) is dict:
             r = R.ok().data(obj=response)

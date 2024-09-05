@@ -1,5 +1,4 @@
-from django.views import View
-
+from django01.core.base_view import BaseView
 from django01.utils.time_util import exec_time_util
 
 
@@ -16,12 +15,18 @@ def myView(request):
 
 
 # Class based view
-class MyView(View):
+class MyView(BaseView):
     def get(self, request):
+        self.action = "get json"
+        self.resource_id_name = "null"
+
         data = {
             "name": "Vaibhav",
             "age": 20,
             "hobbies": ["Coding", "Art", "Gaming", "Cricket", "Piano"],
         }
 
+        self.result = "success"
+        self.save_operation_log(request, self.resource_id_name,
+                                self.action, self.result)
         return data
