@@ -22,6 +22,14 @@ logger = logging.getLogger(settings.LOGGER_NAME)
 class ExceptionMiddleware(MiddlewareMixin):
     """统一异常处理中间件"""
 
+    def process_response(self, request, response):
+        logger.info("response data: {}".format(response))
+        if type(response) is dict:
+            r = R.ok().data(obj=response)
+            return JsonResponse(r)
+        else:
+            raise BusinessException(StatusCodeEnum.SERVER_ERR)
+
     def process_exception(self, request, exception):
         """
         统一异常处理
