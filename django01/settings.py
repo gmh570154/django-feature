@@ -52,12 +52,12 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django01.utils.log_middleware.RequestIDMiddleware',
-    'django01.utils.exception_middleware.ExceptionMiddleware'
+    'django01.middleware.log_middleware.RequestIDMiddleware',
+    'django01.middleware.exception_middleware.ExceptionMiddleware'
 ]
 
 ROOT_URLCONF = 'django01.urls'
@@ -167,7 +167,7 @@ LOGGING = {
         },
         'request_id': {
             # 自定义的filter
-            '()': 'django01.utils.log_middleware.RequestIDFilter'
+            '()': 'django01.middleware.log_middleware.RequestIDFilter'
         }
     },
     'handlers': {
@@ -280,3 +280,15 @@ CACHES = {
 }
 
 LOGGER_NAME = "mylogger"
+
+# # session数据的序列化类
+# SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
+# 设置session失效时间,单位为秒
+SESSION_COOKIE_AGE = 60*5
+# 是否Session的cookie只支持http传输（默认）-- 配置管用
+SESSION_COOKIE_HTTPONLY = True
+# 保存登录key的前缀
+SESSION_KEY_PREFIX = 'django:user:'
