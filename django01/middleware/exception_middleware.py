@@ -10,7 +10,6 @@ from django.db import DatabaseError
 from django.http.response import JsonResponse
 from django.http import HttpResponseRedirect, HttpResponseServerError
 from django.middleware.common import MiddlewareMixin
-from requests import Response
 
 
 from django01.utils.enums import StatusCodeEnum
@@ -25,30 +24,27 @@ class ExceptionMiddleware(MiddlewareMixin):
     """统一异常处理中间件"""
 
     def process_request(self, request):
-        # | 分隔要匹配的多个url，从左到右匹配，有匹配就返回匹配值，否则返回None。
-        pattern = r'^(/web/login|/web/logout|/web/register)'
 
-        # 如果 request.path 的开始位置能够找到这个正则样式的任意个匹配，就返回一个相应的匹配对象。
-        # 如果不匹配，就返回None
-        match = re.search(pattern, request.path)
-
-        # import pdb
-        # pdb.set_trace()
         user = request.session.get("user", False)
         if user:
             request.user = user
-        sessionid = request.COOKIES.get("sessionid")
-        print(sessionid)
-        # 需要拦截的url
-        if match and not sessionid:
-            print('需要过滤的URL >>: ', request.path)
-        elif not user:
-            # 主页未登录
-            if request.path == '/':
-                return HttpResponseRedirect('/web/login/')
-            # ajax请求未登录
-            else:
-                return JsonResponse({'status': False, 'info': '用户未登录!'})
+            # 每次请求都重新刷新登录时长
+            request.session.set_expiry(settings.SESSION_COOKIE_AGE)
+
+        else:  # 没登录场景
+            # | 分隔要匹配的多个url，从左到右匹配，有匹配就返回匹配值，否则返回None。
+            pattern = r'^(/web/login|/web/logout|/web/register)'
+
+            # 如果 request.path 的开始位置能够找到这个正则样式的任意个匹配，就返回一个相应的匹配对象。
+            # 如果不匹配，就返回None
+            match = re.search(pattern, request.path)
+            if not match:  # 如果不是url白名单，需要拦截处理
+                # 主页未登录
+                if request.path == '/':
+                    return HttpResponseRedirect('/web/login')
+                # ajax请求未登录
+                else:
+                    return JsonResponse({'status': False, 'info': '用户未登录!'})
 
     def process_response(self, request, response):
         """返回结果统一处理，转成json返回中间件"""

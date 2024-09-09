@@ -45,7 +45,6 @@ def generate_sid():
 
 class RequestIDMiddleware(MiddlewareMixin):
     def process_request(self, request):
-        # import pdb;pdb.set_trace()
         local.request_id = request.META.get(
             'HTTP_X_REQUEST_ID', generate_sid())
         request.request_id = local.request_id  # 没有glb-req-id需要添加
@@ -54,7 +53,6 @@ class RequestIDMiddleware(MiddlewareMixin):
 
     def process_response(self, request, response):
         logger.info("----- request_end: [{}]".format(request.path))
-        # import pdb;pdb.set_trace()
         if hasattr(request, 'request_id'):
             response['X-Request-ID'] = local.request_id
         try:
