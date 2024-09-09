@@ -280,6 +280,8 @@ CACHES = {
 }
 
 LOGGER_NAME = "mylogger"
+# 是否需要登录验证
+NEED_LOGIN = False
 
 # # session数据的序列化类
 # SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

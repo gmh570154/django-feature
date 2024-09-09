@@ -25,42 +25,38 @@ class ExceptionMiddleware(MiddlewareMixin):
 
     def process_request(self, request):
 
-        user = request.session.get("user", False)
-        if user:
-            request.user = user
-            # 每次请求都重新刷新登录时长
-            request.session.set_expiry(settings.SESSION_COOKIE_AGE)
+        if settings.NEED_LOGIN:
+            if request.user.is_authenticated:
+                # 每次请求都重新刷新登录时长
+                request.session.set_expiry(settings.SESSION_COOKIE_AGE)
 
-        else:  # 没登录场景
-            # | 分隔要匹配的多个url，从左到右匹配，有匹配就返回匹配值，否则返回None。
-            pattern = r'^(/web/login|/web/logout|/web/register)'
+            else:  # 没登录场景
+                # | 分隔要匹配的多个url，从左到右匹配，有匹配就返回匹配值，否则返回None。
+                pattern = r'^(/web/login|/web/logout|/web/register)'
 
-            # 如果 request.path 的开始位置能够找到这个正则样式的任意个匹配，就返回一个相应的匹配对象。
-            # 如果不匹配，就返回None
-            match = re.search(pattern, request.path)
-            if not match:  # 如果不是url白名单，需要拦截处理
-                # 主页未登录
-                if request.path == '/':
-                    return HttpResponseRedirect('/web/login')
-                # ajax请求未登录
-                else:
-                    return JsonResponse({'status': False, 'info': '用户未登录!'})
+                # 如果 request.path 的开始位置能够找到这个正则样式的任意个匹配，就返回一个相应的匹配对象。
+                # 如果不匹配，就返回None
+                match = re.search(pattern, request.path)
+                if not match:  # 如果不是url白名单，需要拦截处理
+                    # 主页未登录
+                    if request.path == '/':
+                        return HttpResponseRedirect('/web/login')
+                    # ajax请求未登录
+                    else:
+                        return JsonResponse({'status': False, 'info': '用户未登录!'})
 
     def process_response(self, request, response):
         """返回结果统一处理，转成json返回中间件"""
         logger.info("response data: {}".format(response))
-
         if type(response) is dict:
             r = R.ok().data(obj=response)
             return JsonResponse(r)
-        elif type(response) is not Exception:
-            return response
         else:
-            raise BusinessException(StatusCodeEnum.SERVER_ERR)
+            return response
 
     def process_exception(self, request, exception):
         """
-        统一异常处理
+        统一异常处理,先处理异常，在处理response
         :param request: 请求对象
         :param exception: 异常对象
         :return:

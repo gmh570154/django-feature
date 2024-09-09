@@ -9,8 +9,9 @@ urlpatterns = [
 
     path('function', rest_view.myView, name="function_view1"),
     path('class', rest_view.MyView.as_view(), name="view1"),
-
+    # 登录start
     path('login', common_view.UserLogin.as_view(), name="login"),
     path('logout', common_view.UserLogout.as_view(), name="logout"),
     path('register', common_view.UserRegister.as_view(), name="register"),
+    # 登录end
 ]
