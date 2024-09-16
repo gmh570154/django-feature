@@ -1,9 +1,6 @@
 ## 基本命令
 
-1.创建项目不能在包含中文的目录下：django-admin startproject mysite
-2.创建app： python manage.py startapp cltest
-3.数据库迁移：python manage.py migrate
-4.创建管理员账号：python manage.py createsuperuser
+1.创建项目不能在包含中文的目录下：django-admin startproject mysite 2.创建 app： python manage.py startapp cltest 3.数据库迁移：python manage.py migrate 4.创建管理员账号：python manage.py createsuperuser
 
 ## 创建虚拟环境 Creating Virtual Environments,在终端创建的步骤如下
 
@@ -248,3 +245,42 @@ curl http://localhost:8090/web/runoob/
 ## 新增依赖包
 
 pip install enums
+
+# celery 异步任务框架 xiangg
+
+## celery 依赖安装
+
+pip install celery
+pip install django-celery-results
+pip install django-celery-beat
+
+## 创建管理员账号：
+
+admin1/1qaz-Z
+
+## 执行迁移
+
+python manage.py migrate
+
+## 运行 worker
+
+celery -A django01 worker -l INFO
+
+## 访问管理员也没查看 celery 执行结果
+
+## celery 监控，安装 flower 的话，需要把 celery 版本降到 4.4.7 以下,或者安装开发版本的 flower
+
+pip install pytz
+pip install https://github.com/mher/flower/zipball/master#egg=flower
+
+## 启动 flower, 指定端口及用户名密码登录
+
+celery -A django01 flower --port=5555 --basic-auth=admin:123456
+
+## 访问 flower ui 页面
+
+http://localhost:5555
+
+## 启动 beat 定时任务器
+
+celery -A django01 beat -l debug

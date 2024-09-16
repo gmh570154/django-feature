@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from datetime import timedelta
 import os
 from pathlib import Path
 
@@ -39,13 +40,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app01.apps.App01Config'
+    'app01.apps.App01Config',
+    'django_celery_beat',
+    'django_celery_results'
 ]
 
 MIDDLEWARE = [
@@ -308,3 +312,44 @@ SESSION_CACHE_ALIAS = 'default'
 SESSION_COOKIE_AGE = 60*5
 # 是否Session的cookie只支持http传输（默认）-- 配置管用
 SESSION_COOKIE_HTTPONLY = True
+
+
+CELERY_ENABLE_UTC = False
+# 不使用国际标准时间
+CELERY_TIMEZONE = 'Asia/Shanghai'
+# 使用亚洲/上海时区
+DJANGO_CELERY_BEAT_TZ_AWARE = False
+# 解决时区问题
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+# 使用0号数据库
+
+CELERY_BROKER_TRANSPORT = 'redis'
+# 使用redis作为中间件
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+# 自定义调度类，使用Django的ORM
+# 任务结果，使用Django的ORM
+# CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/1'
+# 使用mysql数据库保存结果
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_ACCEPT_CONTENT = ['application/json']
+# 设置任务接收的序列化类型
+CELERY_TASK_SERIALIZER = 'json'
+# 设置任务序列化方式
+CELERY_RESULT_SERIALIZER = 'json'
+# 设置结果序列化方式
+
+# CELERY_TASK_TIME_LIMIT = 30 * 60
+# # 任务超时时间限制
+# 为存储结果设置过期日期，默认1天过期。如果beat开启，Celery每天会自动清除，0表示永不清理
+# 这里可以设置成0，然后自己创建清理结果的机制，比较好控制,优先级比config大
+CELERY_RESULT_EXPIRES = 0
+
+# 定时任务
+CELERY_BEAT_SCHEDULE = {
+    'mul_every_10_seconds': {
+        # 任务路径
+        'task': 'app01.rest_api.tasks.plan_task_2',
+        # 每10s执行一次
+        'schedule': timedelta(seconds=10),
+    }
+}
