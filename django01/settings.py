@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app01.apps.App01Config',
     'django_celery_beat',
-    'django_celery_results'
+    'django_celery_results',
+    'rest_framework_simplejwt'
 ]
 
 MIDDLEWARE = [
@@ -352,4 +353,15 @@ CELERY_BEAT_SCHEDULE = {
         # 每10s执行一次
         'schedule': timedelta(seconds=10),
     }
+}
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': timedelta(seconds=300),  # Token有效期
 }

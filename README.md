@@ -284,3 +284,27 @@ http://localhost:5555
 ## 启动 beat 定时任务器
 
 celery -A django01 beat -l debug
+
+## jwt token test
+
+## 依赖安装
+
+pip install djangorestframework-simplejwt
+
+### 获取 token
+
+curl \
+ -X POST \
+ -H "Content-Type: application/json" \
+ -d '{"username": "admin1", "password": "1qaz!QAZ"}' \
+ http://localhost:8000/api/token/
+
+{"refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyNjg0MDUyMywiaWF0IjoxNzI2NzU0MTIzLCJqdGkiOiI2ZDk1OTk5NDY2MzA0NDEyOTI5NmQwYTFkODE0YTAwNyIsInVzZXJfaWQiOjR9.ppXEF_vsnE9kKsNCoPryFlJa77VBwpEqkSeCr_mUtAY","access":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2NzU0NDIzLCJpYXQiOjE3MjY3NTQxMjMsImp0aSI6Ijk4NWVlMDQyZmQ2MzQwNWJhNDEyYmZhMjQ2M2ZmMzg4IiwidXNlcl9pZCI6NH0.FvMULDzDcvCDMwmVR2YfVKaEH50PuwiOeqc6XmumlZs"}%
+
+### 使用 token 访问接口
+
+curl \
+ -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2NzU0NDIzLCJpYXQiOjE3MjY3NTQxMjMsImp0aSI6Ijk4NWVlMDQyZmQ2MzQwNWJhNDEyYmZhMjQ2M2ZmMzg4IiwidXNlcl9pZCI6NH0.FvMULDzDcvCDMwmVR2YfVKaEH50PuwiOeqc6XmumlZs" \
+ http://localhost:8000/api/token/test/
+
+{"message":"Hello, you're authenticated!"}%

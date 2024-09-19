@@ -2,7 +2,12 @@ from django.urls import path
 
 from . import views
 from app01.rest_api import views as rest_view
-from app01.common_api import views as common_view
+from app01.common_api import views as common_view, jwt_token
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView
+)
 
 urlpatterns = [
     path('runoob/', views.runoob, name="runoob"),
@@ -14,4 +19,11 @@ urlpatterns = [
     path('logout', common_view.UserLogout.as_view(), name="logout"),
     path('register', common_view.UserRegister.as_view(), name="register"),
     # 登录end
+
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+
+    # jwt token test
+    path('token/test/', jwt_token.JwtView.as_view(), name='jwt_view'),
 ]
