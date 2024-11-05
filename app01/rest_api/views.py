@@ -46,6 +46,5 @@ class MyView(BaseView):
             task_result.id, task_result.state, task_result.ready(), task_result.successful))
 
         self.result = "success"
-        self.save_operation_log(request, self.resource_id_name,
-                                self.action, self.result)
+        self.save_operation_log(request)
         return data

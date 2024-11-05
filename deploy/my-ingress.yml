@@ -5,13 +5,13 @@ metadata:
   # namespace: default
 spec:
   rules:
-  - host: wwww.webaaa.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: my-django-service
-            port: 
-              number: 80
+    - host: wwww.webaaa.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: my-django-service
+                port:
+                  number: 80
