@@ -15,7 +15,7 @@ import os
 from pathlib import Path
 
 try:
-    from .utils.config import CONF
+    from .utils.config.config import CONF
 except ImportError:
     pass
 

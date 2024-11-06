@@ -5,10 +5,10 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 
 from app01.entity.user import User
-from app01.util.transform import transform_data_to_object
+from app01.util.transform import Transform
 from django01.core.base_view import BaseView
-from django01.utils.exceptions import BusinessException
-from django01.utils.enums import StatusCodeEnum
+from django01.utils.exception.exceptions import BusinessException
+from django01.utils.enums.enums import StatusCodeEnum
 
 
 class UserLogin(BaseView):
@@ -24,7 +24,8 @@ class UserLogin(BaseView):
         '''用户登录'''
         # 接收参数校验
         body = self.get_request_body(request)
-        user = transform_data_to_object(body, User)
+        user = Transform.data_to_object(body, User)
+
         # 用户名密码登录操作
         login_result = loginByNameAndPwd(request, user.username, user.password)
 
@@ -57,7 +58,7 @@ class UserLogout(BaseView):
     """
 
     def get(self, request):
-        response = HttpResponseRedirect('/web/login')
+        response = HttpResponseRedirect('/api/auth/login')
         logout(request)
         return response
 
@@ -92,4 +93,4 @@ class UserRegister(BaseView):
 
         self.result = "success"
         self.save_operation_log(request)
-        return HttpResponseRedirect('/web/login')
+        return HttpResponseRedirect('/api/auth/login')

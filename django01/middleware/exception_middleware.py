@@ -12,9 +12,9 @@ from django.http import HttpResponseRedirect, HttpResponseServerError
 from django.middleware.common import MiddlewareMixin
 
 
-from django01.utils.enums import StatusCodeEnum
-from django01.utils.exceptions import BusinessException
-from django01.utils.result import R
+from django01.utils.enums.enums import StatusCodeEnum
+from django01.utils.exception.exceptions import BusinessException
+from django01.utils.enums.result import R
 from django.conf import settings
 
 logger = logging.getLogger(settings.LOGGER_NAME)
@@ -32,7 +32,7 @@ class ExceptionMiddleware(MiddlewareMixin):
 
             else:  # 没登录场景
                 # | 分隔要匹配的多个url，从左到右匹配，有匹配就返回匹配值，否则返回None。
-                pattern = r'^(/web/login|/web/logout|/web/register)'
+                pattern = r'^(/api/auth/login|/api/auth/logout|/api/auth/register)'
 
                 # 如果 request.path 的开始位置能够找到这个正则样式的任意个匹配，就返回一个相应的匹配对象。
                 # 如果不匹配，就返回None
@@ -40,7 +40,7 @@ class ExceptionMiddleware(MiddlewareMixin):
                 if not match:  # 如果不是url白名单，需要拦截处理
                     # 主页未登录
                     if request.path == '/':
-                        return HttpResponseRedirect('/web/login')
+                        return HttpResponseRedirect('/api/auth/login')
                     # ajax请求未登录
                     else:
                         return JsonResponse({'status': False, 'info': '用户未登录!'})

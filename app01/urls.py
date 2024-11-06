@@ -16,9 +16,9 @@ urlpatterns = [
     path('function', rest_view.myView, name="function_view1"),
     path('class', rest_view.MyView.as_view(), name="view1"),
     # 登录start
-    path('login', login_view.UserLogin.as_view(), name="login"),
-    path('logout', login_view.UserLogout.as_view(), name="logout"),
-    path('register', login_view.UserRegister.as_view(), name="register"),
+    path('auth/login', login_view.UserLogin.as_view(), name="login"),
+    path('auth/logout', login_view.UserLogout.as_view(), name="logout"),
+    path('auth/register', login_view.UserRegister.as_view(), name="register"),
     # 登录end
 
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

@@ -3,7 +3,7 @@ import uuid
 from django.conf import settings
 from app01.rest_api.tasks import plan_task_2, xsum
 from django01.core.base_view import BaseView
-from django01.utils.time_util import exec_time_util
+from django01.utils.view.time_util import exec_time_util
 from celery import group
 from django_celery_results.models import GroupResult
 
@@ -26,9 +26,6 @@ def myView(request):
 # Class based view
 class MyView(BaseView):
     def get(self, request):
-        self.action = "get json"
-        self.resource_id_name = "null"
-
         data = {
             "name": "Vaibhav",
             "age": 20,
@@ -45,6 +42,6 @@ class MyView(BaseView):
         logger.info("id: %s, state: %s, ready: %s, successful: %s".format(
             task_result.id, task_result.state, task_result.ready(), task_result.successful))
 
-        self.result = "success"
+        self.set_log_action_name("get json", "null", "success")
         self.save_operation_log(request)
         return data
