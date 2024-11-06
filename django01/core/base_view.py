@@ -15,10 +15,14 @@ class BaseView(View):
     def get_request_body(self, request):
         return json.loads(request.body)
 
-    def set_log_action_name(self, action, resource_id_name, result):
+    def set_result(self, status):
+        self.result = "success" if status else "failed"
+
+    def set_log_action_name(self, action, resource_id_name, result=None):
         self.action = action
         self.resource_id_name = resource_id_name
-        self.result = result
+        if result is not None:
+            self.result = result
 
     def save_operation_log(self, request):
         if hasattr(request, "user") and not request.user.is_anonymous:

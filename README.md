@@ -308,3 +308,8 @@ curl \
  http://localhost:8000/api/token/test/
 
 {"message":"Hello, you're authenticated!"}%
+
+### 参数校验依赖
+
+pip install pydantic
+pip install email_validator

@@ -5,7 +5,7 @@ from django01.utils.enums.enums import StatusCodeEnum
 
 class Transform:
 
-    @classmethod
+    @staticmethod
     def data_to_object(data, obj):
         try:
             return obj(**data)

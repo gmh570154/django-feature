@@ -1,7 +1,7 @@
 import uuid
 
 from django.conf import settings
-from app01.rest_api.tasks import plan_task_2, xsum
+from app01.api.rest_api.tasks import plan_task_2, xsum
 from django01.core.base_view import BaseView
 from django01.utils.view.time_util import exec_time_util
 from celery import group

@@ -1,5 +1,4 @@
 # ! -*-conding: UTF-8 -*-
-from typing import Optional
 from pydantic import BaseModel, field_validator
 
 
@@ -14,11 +13,12 @@ class User(BaseModel):
     username: str
     password: str
 
+    # 两种自定义参数校验的方式举例
     validate_fields = field_validator("username")(check_name)
 
     @field_validator("password")
-    @classmethod
-    def check_password(cls, password):
+    @staticmethod
+    def check_password(password):
         if len(password) > 18:
             raise ValueError("用户密码长度必须小于18")
         return password
