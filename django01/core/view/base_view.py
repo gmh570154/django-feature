@@ -2,6 +2,7 @@
 import datetime
 from django.views import View
 import json
+from django01.utils.exception.exceptions import BusinessException
 
 
 class BaseView(View):
@@ -32,3 +33,11 @@ class BaseView(View):
         print("{},{},{},{},{}".format(self.username,
                                       self.action, self.resource_id_name,
                                       self.result, datetime.datetime.now()))
+
+    def set_save_log(self, request, action, resource_id_name, result=None):
+        self.set_result(result)
+        self.set_log_action_name(action, resource_id_name)
+        self.save_operation_log(request)
+
+    def raise_bs_exception(self, code):
+        raise BusinessException(code)

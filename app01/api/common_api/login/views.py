@@ -5,8 +5,7 @@ from app01.entity.user import User as EntityUser
 from app01.entity.register_user import RegisterUser
 from app01.util.transform import Transform
 from app01.service.login import register_service, login_service
-from django01.core.base_view import BaseView
-from django01.utils.exception.exceptions import BusinessException
+from django01.core.view.base_view import BaseView
 from django01.utils.enums.enums import StatusCodeEnum
 
 
@@ -26,17 +25,15 @@ class UserLogin(BaseView):
         user = Transform.data_to_object(data, EntityUser)
 
         # 用户名密码登录操作
-        login_result = login_service.loginByNameAndPwd(
+        result = login_service.loginByNameAndPwd(
             request, user.username, user.password)
 
         # 记录操作日志
-        self.set_result(login_result)
-        self.set_log_action_name("user login", user.username)
-        self.save_operation_log(request)
+        self.set_save_log(request, "user login", user.username, result)
 
         # 根据操作结果返回异常或者正常内容
-        if login_result is False:
-            raise BusinessException(StatusCodeEnum.PWD_ERR)
+        if result is False:
+            self.raise_bs_exception(StatusCodeEnum.PWD_ERR)
 
         return {"success": True}
 
@@ -62,11 +59,8 @@ class UserRegister(BaseView):
 
         result = register_service.register_user(user)
 
-        self.set_result(result)
-        self.set_log_action_name("user register", user.username)
-        self.save_operation_log(request)
-
+        self.set_save_log(request, "user register", user.username, result)
         if result is False:
-            raise BusinessException(StatusCodeEnum.REGISTER_FAILED_ERR)
+            self.raise_bs_exception(StatusCodeEnum.REGISTER_FAILED_ERR)
 
         return HttpResponseRedirect('/api/auth/login')
